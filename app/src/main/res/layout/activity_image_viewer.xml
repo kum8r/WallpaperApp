@@ -1,0 +1,66 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+>
+
+    <ImageView
+            android:id="@+id/image_viewer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <LinearLayout
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        <TextView
+
+                android:foregroundGravity="bottom"
+                android:gravity="bottom"
+                android:id="@+id/image_name_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textSize="20sp"
+        />
+
+        <TextView
+                android:id="@+id/image_size_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Size"
+                android:textSize="20sp"
+                android:textAlignment="center"
+        />
+
+        <LinearLayout
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="70dp">
+
+            <ImageButton
+                    android:id="@+id/image_download_btn"
+                    android:src="@drawable/download"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
+
+            <ImageButton
+                    android:id="@+id/image_set_wallpaper"
+                    android:src="@drawable/wallpaper"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

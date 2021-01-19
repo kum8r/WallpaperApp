@@ -4,7 +4,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:tools="http://schemas.android.com/tools"
-android:orientation="vertical">
+        android:orientation="vertical">
 
     <Button
             android:text="Sub Category"
@@ -12,14 +12,6 @@ android:orientation="vertical">
             android:layout_height="wrap_content"
             android:id="@+id/subCategorybutton"
     />
-
-    <TextView
-            android:id="@+id/no_images_text"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:text="No Images"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cat_image_list"

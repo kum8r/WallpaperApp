@@ -12,6 +12,7 @@ import com.kumar.wallpaperapp.ui.adapter.ViewPagerAdapter
 import com.kumar.wallpaperapp.ui.viewmodel.WallpaperViewModel
 
 class ImagesFragment: Fragment()  {
+
     private lateinit var viewModel: WallpaperViewModel
     private  var imagesBinding : FragmentImagesBinding? = null
 

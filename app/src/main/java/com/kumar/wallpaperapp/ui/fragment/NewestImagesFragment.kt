@@ -40,7 +40,7 @@ class NewestImagesFragment: Fragment()  {
 
         val mainActivity = activity as MainActivity
         viewModel = mainActivity.viewModel
-        newestImageListAdapter = ImageListAdapter(mainActivity)
+        newestImageListAdapter = ImageListAdapter(mainActivity, imageFullWidth = true)
         linearLayoutManager = LinearLayoutManager(mainActivity)
 
         binding?.newestImageList?.adapter = newestImageListAdapter

@@ -19,12 +19,12 @@ import com.kumar.wallpaperapp.utils.WallpaperType
 
 class FeaturedImagesFragment: Fragment()  {
     private lateinit var viewModel: WallpaperViewModel
-    private  var binding: FragmentFeaturedImagesBinding? = null
+    private var binding: FragmentFeaturedImagesBinding? = null
     var isLoading:Boolean =false
     var pageNo:Int = 1
     lateinit var linearLayoutManager : LinearLayoutManager
     lateinit var featuredImageListAdapter: ImageListAdapter
-    val featuredWallpaperList: MutableLiveData<List<Wallpapers>> = MutableLiveData()
+    private val featuredWallpaperList: MutableLiveData<List<Wallpapers>> = MutableLiveData()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentFeaturedImagesBinding.inflate(inflater, container, false)
@@ -36,7 +36,7 @@ class FeaturedImagesFragment: Fragment()  {
 
         val mainActivity = activity as MainActivity
         viewModel = mainActivity.viewModel
-        featuredImageListAdapter = ImageListAdapter(mainActivity)
+        featuredImageListAdapter = ImageListAdapter(mainActivity, imageFullWidth = true)
         linearLayoutManager = LinearLayoutManager(mainActivity)
 
         binding?.featuredImageList?.adapter = featuredImageListAdapter
@@ -44,16 +44,12 @@ class FeaturedImagesFragment: Fragment()  {
 
         setRVScrollListener()
 
+        featuredWallpaperList.observe(viewLifecycleOwner, {
+            featuredImageListAdapter.setWallpaper(it)
+            binding?.featuredImagesProgress?.visibility = View.GONE
+        })
 
-            featuredWallpaperList.observe(viewLifecycleOwner, {
-                featuredImageListAdapter.setWallpaper(it)
-            })
-
-            Coroutines.main {
-                val featuredWallpapers = viewModel.getFeaturedWallpaperList(1)
-                featuredWallpaperList.postValue(featuredWallpapers)
-            }
-
+        loadMore()
     }
 
     private fun setRVScrollListener() {
@@ -75,9 +71,10 @@ class FeaturedImagesFragment: Fragment()  {
 
     fun loadMore() {
         Coroutines.main {
-            val featuredWallpapers = viewModel.getFeaturedWallpaperList(1)
+            val featuredWallpapers = viewModel.getFeaturedWallpaperList(pageNo)
             featuredWallpaperList.postValue(featuredWallpapers)
             isLoading = true
+            binding?.featuredImagesProgress?.visibility = View.VISIBLE
         }
     }
 

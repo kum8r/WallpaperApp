@@ -22,7 +22,8 @@ import com.kumar.wallpaperapp.utils.WallpaperType
 import com.squareup.picasso.Picasso
 import java.util.*
 
-class ImageListAdapter(val context: Context, var onClickListener: OnClickListener?=null, val hasShowMore:Boolean = false)
+class ImageListAdapter(val context: Context, var onClickListener: OnClickListener?=null, val hasShowMore:Boolean = false,
+    val imageFullWidth:Boolean = false)
     : Adapter<ImageListAdapter.ViewHolder>() {
     var wallpaperList:MutableList<Wallpapers> = mutableListOf()
 
@@ -70,6 +71,9 @@ class ImageListAdapter(val context: Context, var onClickListener: OnClickListene
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        if (imageFullWidth) {
+            return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.image_list, parent, false))
+        }
         val itemView:View = if (viewType == R.layout.horizontal_image_list_item) {
             LayoutInflater.from(parent.context).inflate(R.layout.horizontal_image_list_item, parent, false)
         } else {

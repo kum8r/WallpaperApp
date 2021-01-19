@@ -37,7 +37,7 @@ class PopularImagesFragment: Fragment()  {
 
         val mainActivity = activity as MainActivity
         viewModel = mainActivity.viewModel
-        popularImageListAdapter = ImageListAdapter(mainActivity)
+        popularImageListAdapter = ImageListAdapter(mainActivity, imageFullWidth = true)
         linearLayoutManager = LinearLayoutManager(mainActivity)
 
         binding?.popularImageList?.adapter = popularImageListAdapter

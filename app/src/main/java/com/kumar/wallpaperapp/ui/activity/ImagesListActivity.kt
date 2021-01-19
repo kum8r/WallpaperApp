@@ -31,16 +31,13 @@ class ImagesListActivity : AppCompatActivity() {
             WallpaperViewModelFactory(Repository(RetrofitInstance.invoke(networkConnectionInterceptor)))
         ).get(WallpaperViewModel::class.java)
 
-
         val category = intent.getSerializableExtra("category") as Category
-        var isSubCategoryImageList = false
-        isSubCategoryImageList = intent.getBooleanExtra("isSubCategoryImageList", false)
+        var isSubCategoryImageList: Boolean = intent.getBooleanExtra("isSubCategoryImageList", false)
 
         var isImageList = false
         isImageList = intent.getBooleanExtra("isImageList", false)
         var isCategoryList = false
-        isCategoryList = intent.getBooleanExtra("isCategoryList", false)
-
+        intent.getBooleanExtra("isCategoryList", false).also { isCategoryList = it }
 
         var fragment: Fragment? = null
 

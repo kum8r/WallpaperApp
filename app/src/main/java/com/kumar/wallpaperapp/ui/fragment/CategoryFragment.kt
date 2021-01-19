@@ -2,15 +2,12 @@ package com.kumar.wallpaperapp.ui.fragment
 
 import android.app.Activity
 import android.content.Context
-import android.media.Image
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kumar.wallpaperapp.data.Category
 import com.kumar.wallpaperapp.databinding.FragmentCategoryBinding
@@ -25,6 +22,7 @@ class CategoryFragment: Fragment() {
     private lateinit var viewModel: WallpaperViewModel
     private  var binding: FragmentCategoryBinding? = null
     var mActivity:Activity? = null
+    var isLoading:Boolean = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentCategoryBinding.inflate(inflater,container, false)
@@ -66,15 +64,19 @@ class CategoryFragment: Fragment() {
 
         categoryList.observe(viewLifecycleOwner, { categoryList ->
             categoryListAdapter.setCategory(categoryList)
+            binding?.catProgressBar?.visibility = View.GONE
         })
+
         if (!isSubCategory)
         {
+            binding?.catProgressBar?.visibility = View.VISIBLE
             Coroutines.main {
                 val category = viewModel.getCategory()
                 categoryList.postValue(category)
             }
         }
         else {
+            binding?.catProgressBar?.visibility = View.VISIBLE
             Coroutines.main {
                 val category = viewModel.getSubCategory(categoryId?.id!!)
                 categoryList.postValue(category)

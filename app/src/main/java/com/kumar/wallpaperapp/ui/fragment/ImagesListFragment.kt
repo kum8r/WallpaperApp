@@ -27,7 +27,7 @@ class ImagesListFragment : Fragment() {
     lateinit var adapter: ImageListAdapter
     lateinit var linearLayoutManager:LinearLayoutManager
     var isLoading = false
-    val wallpaperList: MutableLiveData<List<Wallpapers>> = MutableLiveData()
+    private val wallpaperList: MutableLiveData<List<Wallpapers>> = MutableLiveData()
     var category:Category? = null
     var isSubCategoryImageList:Boolean? = false
 
@@ -38,72 +38,8 @@ class ImagesListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//
-//
-//        imagesBinding?.noImagesText?.visibility = View.INVISIBLE
-//
-
-//
-//
-//
-//        if (isSubCategoryImageList!!) {
-//            imagesBinding?.subCategorybutton?.visibility = View.INVISIBLE
-//        }
-//        else {
-
-//        }
-//
-//        Log.e("TAG", "sa: ${isSubCategoryImageList}", )
-//
-//
-//        if (isSubCategoryImageList!!) {
-//
-//            viewModel.subCategoryWallpaperList.observe(viewLifecycleOwner, {
-//                Log.e("TAG", "subcategoryList: ${it}")
-//                adapter.addWallpapers(it)
-//                if (adapter.getWallpaperListSize() > 0) {
-//                    imagesBinding?.noImagesText?.visibility = View.INVISIBLE
-//                    imagesBinding?.catImageList?.visibility = View.VISIBLE
-//                } else {
-//                    imagesBinding?.noImagesText?.visibility = View.VISIBLE
-//                    imagesBinding?.catImageList?.visibility = View.INVISIBLE
-//                }
-//            })
-//        }
-//        else
-//        {
-//            viewModel.categoryWallpaperList.observe(viewLifecycleOwner, {
-//                Log.e("TAG", "categoryList: ${it}")
-//                adapter.addWallpapers(it)
-//                if (adapter.getWallpaperListSize() > 0) {
-//                    imagesBinding?.noImagesText?.visibility = View.INVISIBLE
-//                    imagesBinding?.catImageList?.visibility = View.VISIBLE
-//                } else {
-//                    imagesBinding?.noImagesText?.visibility = View.VISIBLE
-//                    imagesBinding?.catImageList?.visibility = View.INVISIBLE
-//                }
-//            })
-//        }
-//
-//        Log.e("TAG", "category: $category", )
-//        if (isSubCategoryImageList)
-//        {
-//            if (category != null) {
-//                viewModel.getSubCategoryWallpaper(category.id,pageNo)
-//            }
-//        }
-//        else{
-//            if (category != null) {
-//                viewModel.getCategoryWallpaper(category.id, pageNo)
-//            }
-//        }
-//
-//
-//        var isSubCategory:Boolean? = false
-//        isSubCategory = bundle?.getBoolean("isSubCategory",false)
-
-
         val activity = activity as ImagesListActivity
+
         viewModel  = activity.viewModel
         adapter = ImageListAdapter(activity)
         linearLayoutManager = LinearLayoutManager(activity)
@@ -114,9 +50,11 @@ class ImagesListFragment : Fragment() {
         val bundle = arguments
         category = bundle?.getSerializable("category") as Category?
         isSubCategoryImageList = bundle?.getBoolean("isSubCategoryImageList",false)
+
         wallpaperList.observe(viewLifecycleOwner, {
             adapter.setWallpaper(it)
         })
+
         imagesBinding?.catImageList?.adapter = adapter
         if (isSubCategoryImageList!!) {
             imagesBinding?.subCategorybutton?.visibility = View.INVISIBLE

@@ -8,4 +8,4 @@
 
 ** Download **
 
-<a href="https://github.com/kum8r/WallpaperApp/releases/tag/1"> Android Apk </a>
+<a href="https://github.com/kum8r/WallpaperApp/releases"> Android Apk </a>

@@ -9,7 +9,6 @@
             android:id="@+id/hr_list_image_item"
             android:layout_width="300dp"
             android:layout_height="200dp"
-            app:srcCompat="@drawable/ic_launcher_background"
             android:background="@drawable/searchbar_style"
             />
 </LinearLayout>

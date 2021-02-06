@@ -53,7 +53,6 @@ class ImageListAdapter(val context: Context, var onClickListener: OnClickListene
         }
 
         private fun imageView(position:Int) {
-            Log.e("TAG", "imageView: ${wallpaperList[position]}", )
             val imageItem = v.findViewById<ImageView>(R.id.hr_list_image_item)
             Picasso.get()
                 .load(wallpaperList[position].url_image)
